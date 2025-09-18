@@ -1,113 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mods Grid</title>
+  <meta charset="utf-8">
+  <title>Password Protected Site</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       background: #121212;
       color: #eee;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: #1e1e1e;
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 16px;
-      flex-grow: 1;
-    }
-    .card-content h3 {
-      margin: 0 0 8px 0;
-      font-size: 18px;
-      color: #fff;
-    }
-    .card-content p {
-      margin: 0 0 16px 0;
-      color: #aaa;
-      font-size: 14px;
-    }
-    .card-link {
-      text-decoration: none;
-      background: #0066ff;
-      color: #fff;
-      padding: 12px;
       text-align: center;
-      margin: 0 16px 16px 16px;
+      padding: 40px;
+    }
+    #content { display: none; }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
       border-radius: 8px;
-      display: block;
-      font-weight: 600;
+      font-size: 16px;
     }
-    .card-link:hover {
-      background: #0050cc;
+    button {
+      background: #00ffcc;
+      color: #111;
+      cursor: pointer;
     }
+    button:hover { background: #00ffaa; }
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+      font-size: 20px;
+    }
+    a:hover { color: yellow; }
   </style>
 </head>
 <body>
-  <h1>Game Mods Grid</h1>
-  <div class="grid">
+  <h1>Enter Password 🔒</h1>
+  <input id="pw" type="password" placeholder="Password">
+  <button id="go">Unlock</button>
+  <p id="msg"></p>
 
-    <!-- NBA 2K25 -->
-    <div class="card">
-      <img src="https://newsroom.2k.com/resources/nba-2k25-cover-reveal-key-art.jpg" alt="NBA 2K25 Cover">
-      <div class="card-content">
-        <h3>NBA 2K25</h3>
-        <p>Latest basketball experience featuring new mechanics and gameplay.</p>
-      </div>
-      <a class="card-link" href="https://nba.2k.com">View Game</a>
-    </div>
-
-    <!-- Rust -->
-    <div class="card">
-      <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="Rust">
-      <div class="card-content">
-        <h3>Rust</h3>
-        <p>Survive in a harsh world, gather resources, and fight to stay alive.</p>
-      </div>
-      <a class="card-link" href="https://rust.facepunch.com/">View Game</a>
-    </div>
-
-    <!-- Rocket League -->
-    <div class="card">
-      <img src="https://cdn2.unrealengine.com/rocketleague/home/rl-2023-epic-launch-key-art-1920x1080-1920x1080-9b2c86.png" alt="Rocket League">
-      <div class="card-content">
-        <h3>Rocket League</h3>
-        <p>Cars, soccer, and chaos. Play one of the most iconic competitive games.</p>
-      </div>
-      <a class="card-link" href="https://www.rocketleague.com/">View Game</a>
-    </div>
-
-    <!-- Sea of Thieves -->
-    <div class="card">
-      <img src="https://cdn.akamai.steamstatic.com/steam/apps/1172620/header.jpg" alt="Sea of Thieves">
-      <div class="card-content">
-        <h3>Sea of Thieves</h3>
-        <p>A pirate’s life — sail, plunder, and battle on the open seas.</p>
-      </div>
-      <a class="card-link" href="https://www.seaofthieves.com/">View Game</a>
-    </div>
-
+  <div id="content">
+    <h2>🎮 Welcome to the Game Hub</h2>
+    <p>Select a game:</p>
+    <a href="games/snake/index.html">🐍 Snake</a><br>
+    <a href="games/tetris/index.html">🧱 Tetris</a><br>
+    <a href="games/flappy/index.html">🐦 Flappy Bird</a>
   </div>
+
+  <script>
+    const PASSWORD = "aps526165"; // your real password
+
+    document.getElementById("go").onclick = () => {
+      const input = document.getElementById("pw").value;
+      if (input === PASSWORD) {
+        document.getElementById("content").style.display = "block";
+        document.querySelector("h1").style.display = "none";
+        document.getElementById("pw").style.display = "none";
+        document.getElementById("go").style.display = "none";
+        document.getElementById("msg").textContent = "";
+      } else {
+        document.getElementById("msg").textContent = "❌ Wrong password";
+      }
+    };
+  </script>
 </body>
 </html>
